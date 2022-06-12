@@ -1,0 +1,44 @@
+﻿{% extends "./base.html.twig" %}
+
+{% block title %}
+    Lista
+{% endblock %}
+
+{% block header %}
+<header>
+    <h1>Lista</h1>
+        {{ parent() }}
+</header>
+{% endblock %}
+
+{% block body %}
+    
+    {% if app.user %}
+        {% if posts|length > 0 %}
+            {% for post in posts %}
+                <article>
+                    <h3> Tytuł: {{ post.title }}  </h3>
+
+                    {% for user in users %}
+                        {% if user.id == post.userId %}
+                            <p class="author"><b>Autor: {{ user.name }} </b></p>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    
+                    <p> {{ post.body }} </p>
+
+                    <a href="/lista/delete/{{ post.id }}">
+                        Usuń
+                    </a>
+                </article>
+            {% endfor %}
+        {% else %}
+            <p>Brak danych. Pobierz dane za pomocą komendy: <b>php bin/console getAPIData</b></p>
+        {% endif %}
+    {% else %}
+
+        <h1>Zaloguj się aby zobaczyć posty</h1>
+
+    {% endif %}
+{% endblock %}

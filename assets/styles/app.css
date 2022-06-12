@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+}
+
+header
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    background-color:rgb(85, 154, 85);
+    color: white;
+}
+
+header > h1
+{
+    text-align: center;
+    width: 75%;
+}
+
+header > a
+{
+    width: 25%;
+    text-align: center;
+    text-decoration: none;
+    padding: 25px;
+    color: white;
+    margin-bottom: 25px;
+}
+
+header> a:visited, header > a:hover
+{
+    color: white;
+}
+
+article
+{
+    width: 80%;
+    border: 1px solid black;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+article > h3
+{    
+    font-size: 25px;
+}
+
+article > a
+{
+    padding: 10px;
+    color: white;
+    background-color: red;
+    border: 1px solid darkred;
+    border-radius: 2%;
+    text-decoration: none;
+}
+
