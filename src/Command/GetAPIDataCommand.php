@@ -97,7 +97,7 @@ class GetAPIDataCommand extends Command
             
             $this->entityManager->persist($user);
         }
-        
+         
     }
 
 }
