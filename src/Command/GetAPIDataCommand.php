@@ -19,14 +19,12 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 )]
 class GetAPIDataCommand extends Command
 {
-    private $posts;
-    private $users;
+    private $clientInterface;
     private $entityManager;
 
-    public function __construct(HttpClientInterface $posts, HttpClientInterface $users, EntityManagerInterface $entityManager)
+    public function __construct(HttpClientInterface $clientInterface, EntityManagerInterface $entityManager)
     {
-        $this->posts = $posts;
-        $this->users = $users;
+        $this->clientInterface = $clientInterface;
         $this->entityManager = $entityManager;
 
         parent::__construct();
@@ -64,7 +62,7 @@ class GetAPIDataCommand extends Command
 
     public function getPosts()
     {
-        $posts = $this->posts->request(
+        $posts = $this->clientInterface->request(
             'GET',
             'https://jsonplaceholder.typicode.com/posts'
         );
@@ -82,7 +80,7 @@ class GetAPIDataCommand extends Command
 
     public function getUsers()
     {
-        $users = $this->users->request(
+        $users = $this->clientInterface->request(
             'GET',
             'https://jsonplaceholder.typicode.com/users'
         );
@@ -90,11 +88,11 @@ class GetAPIDataCommand extends Command
 
         $userValues = $users->toArray();
 
-        foreach($userValues as $uv)
+        foreach($userValues as $uservalue)
         {
             $user = new User();
 
-            $user->setName($uv['name']);
+            $user->setName($uservalue['name']);
             
             
             $this->entityManager->persist($user);
